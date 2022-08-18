@@ -5,6 +5,9 @@ const app = express();
 require('dotenv/config');
 const api = process.env.API_URL;
 
+// middleware
+app.use(express.json());
+
 // /api/v1
 app.get(`${api}/products`, (req, res) => {
   const product = {
@@ -14,6 +17,13 @@ app.get(`${api}/products`, (req, res) => {
   };
   res.send(product);
 });
+
+app.post(`${api}/product`, (req, res) => {
+  const product = req.body;
+  console.log(product);
+  res.send(product);
+});
+
 
 app.listen(3000, () => {
   console.log(`server is running http://localhost:3000${api}`);
