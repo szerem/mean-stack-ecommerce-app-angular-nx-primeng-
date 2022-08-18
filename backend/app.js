@@ -2,11 +2,19 @@
 
 const express = require('express');
 const app = express();
-require('dotenv/config');
-const api = process.env.API_URL;
+const morgan = require('morgan');
+
+
 
 // middleware
 app.use(express.json());
+app.use(morgan('tiny'));
+
+require('dotenv/config');
+
+
+const api = process.env.API_URL;
+
 
 // /api/v1
 app.get(`${api}/products`, (req, res) => {
